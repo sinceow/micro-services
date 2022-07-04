@@ -1,0 +1,23 @@
+{
+    "name": "jobsys/micro-services",
+    "type": "library",
+    "description": "SDK for Jobsys micro services.",
+    "keywords": [
+        "SDK"
+    ],
+    "authors": [
+        {
+            "name": "sinceow",
+            "email": "sinceow@163.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0"
+    },
+    "autoload": {
+        "files": [],
+        "psr-4": {
+            "Jobsys\\MicroServices\\": "src/"
+        }
+    }
+}
