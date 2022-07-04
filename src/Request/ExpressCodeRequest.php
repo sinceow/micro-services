@@ -56,4 +56,9 @@ class ExpressCodeRequest implements  MsRequest{
             throw new Exception("client-check-error:Invalid Arguments:the value of ex_name is empty", 41);
         }
     }
+
+    public function getResponseType(): string
+    {
+        return "json";
+    }
 }

@@ -191,4 +191,9 @@ class SmsRequest implements MsRequest
 
         RequestCheckUtil::checkNotNull($this->type, 'type');
     }
+
+    public function getResponseType(): string
+    {
+        return "json";
+    }
 }

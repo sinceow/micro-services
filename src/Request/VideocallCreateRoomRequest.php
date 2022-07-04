@@ -131,4 +131,9 @@ class VideocallCreateRoomRequest implements MsRequest
             throw new Exception("client-check-error:Invalid Arguments:the value of remote_user_name is empty", 41);
         }
     }
+
+    public function getResponseType(): string
+    {
+        return "json";
+    }
 }

@@ -133,4 +133,9 @@ class PdfGenerateRequest implements MsRequest
             throw new Exception("client-check-error:Invalid Arguments: must pass url or file", 41);
         }
     }
+
+    public function getResponseType(): string
+    {
+        return "file";
+    }
 }

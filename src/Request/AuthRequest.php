@@ -136,4 +136,8 @@ class AuthRequest implements MsRequest
         }
     }
 
+    public function getResponseType(): string
+    {
+        return "json";
+    }
 }

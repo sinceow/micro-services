@@ -105,4 +105,9 @@ class VideocallCallingRoomRequest implements MsRequest
     public function check()
     {
     }
+
+    public function getResponseType(): string
+    {
+        return "json";
+    }
 }

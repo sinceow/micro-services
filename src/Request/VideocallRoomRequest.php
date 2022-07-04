@@ -68,4 +68,9 @@ class VideocallRoomRequest implements MsRequest
             throw new Exception("client-check-error:Invalid Arguments:the value of room_ids is empty", 41);
         }
     }
+
+    public function getResponseType(): string
+    {
+        return "json";
+    }
 }

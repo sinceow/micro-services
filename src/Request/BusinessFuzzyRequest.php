@@ -74,4 +74,9 @@ class BusinessFuzzyRequest implements  MsRequest{
             throw new Exception("client-check-error:Invalid Arguments:the value of keyword is empty", 41);
         }
     }
+
+    public function getResponseType(): string
+    {
+        return "json";
+    }
 }

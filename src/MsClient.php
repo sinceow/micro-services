@@ -62,7 +62,7 @@ class MsClient
     }
 
 
-    public function curl($url, $post_fields = [], $post_files = []): bool|string
+    public function curl($url, $post_fields = [], $res_type = 'json'): bool|string
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -82,7 +82,7 @@ class MsClient
         }
 
         if (!empty($post_fields)) {
-            $header = array("content-type: multipart/form-data; charset=UTF-8");
+            $header = ["content-type: multipart/form-data; charset=UTF-8"];
             if ($this->token) {
                 $header[] = 'Authorization: Bearer ' . $this->token;
             }
@@ -104,6 +104,15 @@ class MsClient
             curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
         }
+
+        if ($res_type === 'file') {
+            $temp_file = tempnam(sys_get_temp_dir(), 'Ms');
+            $fp = fopen($temp_file, 'w');
+            curl_setopt($ch, CURLOPT_FILE, $fp);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        }
+
+
         $response = curl_exec($ch);
 
         if (curl_errno($ch)) {
@@ -115,7 +124,12 @@ class MsClient
             }
         }
         curl_close($ch);
-        return $response;
+        if ($res_type === 'file') {
+            fclose($fp);
+            return $temp_file;
+        } else {
+            return $response;
+        }
     }
 
 
@@ -183,7 +197,7 @@ class MsClient
 
         //发起HTTP请求
         try {
-            $resp = $this->curl($request_url, $api_params);
+            $resp = $this->curl($request_url, $api_params, $request->getResponseType());
         } catch (Exception $e) {
             $this->logCommunicationError($request->getApiMethodName(), $request_url, "HTTP_ERROR_" . $e->getCode(), $e->getMessage());
             $result->status = $e->getCode();
@@ -195,29 +209,28 @@ class MsClient
 
         //解析MS返回结果
 
-        //如果是特定返回类型的直接返回
-        if (isset($request->_response)) {
-            if ($request->_response === 'file') {
-                return $resp;
+
+        if ($request->getResponseType() === 'json') {
+            //否则当成 JSON 处理
+            $resp_well_formed = false;
+            $resp_object = json_decode($resp);
+            if (null !== $resp_object) {
+                $resp_well_formed = true;
+                $result->status = $resp_object->status;
+                $result->result = $resp_object->result;
             }
+
+            //返回的HTTP文本不是标准JSON，记下错误日志
+            if (false === $resp_well_formed) {
+                $this->logCommunicationError($request->getApiMethodName(), $request_url, "HTTP_RESPONSE_NOT_WELL_FORMED", $resp);
+                $result->status = self::STATE_FAIL;
+                $result->result = "HTTP_RESPONSE_NOT_WELL_FORMED";
+                return json_encode($result);
+            }
+        } else if ($request->getResponseType() === 'file') {
+            return $resp;
         }
 
-        //否则当成 JSON 处理
-        $resp_well_formed = false;
-        $resp_object = json_decode($resp);
-        if (null !== $resp_object) {
-            $resp_well_formed = true;
-            $result->status = $resp_object->status;
-            $result->result = $resp_object->result;
-        }
-
-        //返回的HTTP文本不是标准JSON，记下错误日志
-        if (false === $resp_well_formed) {
-            $this->logCommunicationError($request->getApiMethodName(), $request_url, "HTTP_RESPONSE_NOT_WELL_FORMED", $resp);
-            $result->status = self::STATE_FAIL;
-            $result->result = "HTTP_RESPONSE_NOT_WELL_FORMED";
-            return json_encode($result);
-        }
 
         //如果MS返回了错误码，记录到业务错误日志中
         if (isset($resp_object->status) && $resp_object->status != self::STATE_SUCCESS) {

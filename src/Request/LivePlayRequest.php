@@ -234,4 +234,9 @@ class LivePlayRequest implements MsRequest
             throw new Exception("client-check-error:Over 24 hours limit", 41);
         }
     }
+
+    public function getResponseType(): string
+    {
+        return "json";
+    }
 }

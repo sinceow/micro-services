@@ -24,4 +24,6 @@ interface MsRequest
     public function getApiParams();
 
     public function check();
+
+    public function getResponseType();
 }
