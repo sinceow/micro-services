@@ -63,6 +63,11 @@ class BusinessAccurateRequest implements  MsRequest{
         return $this->api_params;
     }
 
+    public function getResponseType(): string
+    {
+        return "json";
+    }
+
     /**
      * @throws Exception
      */

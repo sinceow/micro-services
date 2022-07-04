@@ -66,4 +66,9 @@ class LivePlayInfoRequest implements MsRequest
             throw new Exception("client-check-error:Invalid Arguments:the value of stream_name is empty", 41);
         }
     }
+
+    public function getResponseType(): string
+    {
+        return "json";
+    }
 }

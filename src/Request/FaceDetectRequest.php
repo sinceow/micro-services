@@ -143,4 +143,9 @@ class FaceDetectRequest implements MsRequest
 
         return true;
     }
+
+    public function getResponseType(): string
+    {
+        return "json";
+    }
 }
