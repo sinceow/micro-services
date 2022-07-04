@@ -34,9 +34,7 @@ class MsClient
 
     public int $read_timeout = 0;
 
-    //private $server_url = "https://msv8.jobsys.cn/public/index.php/";
-    //private $server_url = "https://ms.jobsys.cn/public/index.php/";
-    private string $server_url = "http://192.168.50.187/micro-services-v8/public/index.php/";
+    private $server_url = "https://msv8.jobsys.cn/public/index.php/";
 
     public bool $check_request = true;
 
