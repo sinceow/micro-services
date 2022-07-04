@@ -1,8 +1,11 @@
 {
     "name": "jobsys/micro-services",
     "type": "library",
+    "license": "MIT",
     "description": "SDK for Jobsys micro services.",
     "keywords": [
+        "Jobsys",
+        "Micro Services",
         "SDK"
     ],
     "authors": [
