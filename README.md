@@ -9,3 +9,10 @@ composer require jobsys/micro-services
 ```bash
 composer update jobsys/micro-services
 ```
+
+#  添加版本
+
+```bash
+git tag -a x.x.x
+git push origin --tags
+```

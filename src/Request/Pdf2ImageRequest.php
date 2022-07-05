@@ -17,7 +17,10 @@
 namespace Jobsys\MicroServices\Request;
 
 use Exception;
+use Jobsys\MicroServices\MsClient;
 use Jobsys\MicroServices\RequestCheckUtil;
+use Jobsys\MicroServices\ResultSet;
+use ZipArchive;
 
 class Pdf2ImageRequest implements MsRequest
 {
@@ -131,5 +134,33 @@ class Pdf2ImageRequest implements MsRequest
     public function getResponseType(): string
     {
         return "compress";
+    }
+
+    public function _resultHandler(ResultSet $result): ResultSet
+    {
+        $zip = new ZipArchive;
+        $res = $zip->open($result->result);
+        if ($res === TRUE) {
+            $temp_dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'mszip' . rand(100000, 999999);
+            $zip->extractTo($temp_dir);
+            $zip->close();
+
+            $handler = opendir($temp_dir);
+            $files = [];
+            while (($filename = readdir($handler)) !== false) {//务必使用!==，防止目录下出现类似文件名“0”等情况
+                if ($filename != "." && $filename != "..") {
+                    $index = intval(explode('.', $filename)[0]);
+                    $files[$index] = $temp_dir . DIRECTORY_SEPARATOR . $filename;
+                }
+            }
+            closedir($handler);
+            $result->status = MsClient::STATE_SUCCESS;
+            $result->result = $files;
+        } else {
+            $result->status = MsClient::STATE_FAIL;
+            $result->result = '解压失败';
+        }
+
+        return $result;
     }
 }
