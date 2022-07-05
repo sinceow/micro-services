@@ -125,7 +125,7 @@ class MsClient
             }
         }
         curl_close($ch);
-        if ($res_type === 'file') {
+        if ($res_type === 'file' || $res_type === 'compress') {
             fclose($fp);
             return $temp_file;
         } else {
