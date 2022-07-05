@@ -231,31 +231,11 @@ class MsClient
         } else if ($request->getResponseType() === 'file') {
             $result->status = self::STATE_SUCCESS;
             $result->result = $resp;
-        } else if ($request->getResponseType() === 'compress') {
-            $zip = new ZipArchive;
-            $res = $zip->open($resp);
-            if ($res === TRUE) {
-                $temp_dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'mszip' . rand(100000, 999999);
-                $zip->extractTo($temp_dir);
-                $zip->close();
-
-                $handler = opendir($temp_dir);
-                $files = [];
-                while (($filename = readdir($handler)) !== false) {//务必使用!==，防止目录下出现类似文件名“0”等情况
-                    if ($filename != "." && $filename != "..") {
-                        $files[] = $temp_dir . DIRECTORY_SEPARATOR . $filename;
-                    }
-                }
-                closedir($handler);
-                sort($files);
-                $result->status = self::STATE_SUCCESS;
-                $result->result = $files;
-            } else {
-                $result->status = self::STATE_FAIL;
-                $result->result = '解压失败';
-            }
         }
 
+        if (method_exists($request, '_resultHandler')) {
+            $result = $request->_resultHandler($result);
+        }
 
         //如果MS返回了错误码，记录到业务错误日志中
         if (isset($resp_object->status) && $resp_object->status != self::STATE_SUCCESS) {
