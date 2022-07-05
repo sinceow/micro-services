@@ -106,7 +106,7 @@ class MsClient
             curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
         }
 
-        if ($res_type === 'file' || $res_type === 'compress') {
+        if ($res_type === 'file') {
             $temp_file = tempnam(sys_get_temp_dir(), 'Ms');
             $fp = fopen($temp_file, 'w');
             curl_setopt($ch, CURLOPT_FILE, $fp);
@@ -125,7 +125,7 @@ class MsClient
             }
         }
         curl_close($ch);
-        if ($res_type === 'file' || $res_type === 'compress') {
+        if ($res_type === 'file') {
             fclose($fp);
             return $temp_file;
         } else {
