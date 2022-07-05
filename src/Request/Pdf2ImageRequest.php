@@ -133,7 +133,7 @@ class Pdf2ImageRequest implements MsRequest
 
     public function getResponseType(): string
     {
-        return "compress";
+        return "file";
     }
 
     public function _resultHandler(ResultSet $result): ResultSet
