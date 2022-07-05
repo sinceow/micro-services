@@ -19,6 +19,7 @@ namespace Jobsys\MicroServices;
 use Exception;
 use Jobsys\MicroServices\Request\AuthRequest;
 use Jobsys\MicroServices\Request\MsRequest;
+use ZipArchive;
 
 class MsClient
 {
@@ -105,7 +106,7 @@ class MsClient
             curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
         }
 
-        if ($res_type === 'file') {
+        if ($res_type === 'file' || $res_type === 'compress') {
             $temp_file = tempnam(sys_get_temp_dir(), 'Ms');
             $fp = fopen($temp_file, 'w');
             curl_setopt($ch, CURLOPT_FILE, $fp);
@@ -228,7 +229,31 @@ class MsClient
                 return json_encode($result);
             }
         } else if ($request->getResponseType() === 'file') {
-            return $resp;
+            $result->status = self::STATE_SUCCESS;
+            $result->result = $resp;
+        } else if ($request->getResponseType() === 'compress') {
+            $zip = new ZipArchive;
+            $res = $zip->open($resp);
+            if ($res === TRUE) {
+                $temp_dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'mszip' . rand(100000, 999999);
+                $zip->extractTo($temp_dir);
+                $zip->close();
+
+                $handler = opendir($temp_dir);
+                $files = [];
+                while (($filename = readdir($handler)) !== false) {//务必使用!==，防止目录下出现类似文件名“0”等情况
+                    if ($filename != "." && $filename != "..") {
+                        $files[] = $temp_dir . DIRECTORY_SEPARATOR . $filename;
+                    }
+                }
+                closedir($handler);
+                sort($files);
+                $result->status = self::STATE_SUCCESS;
+                $result->result = $files;
+            } else {
+                $result->status = self::STATE_FAIL;
+                $result->result = '解压失败';
+            }
         }
 
 
@@ -241,15 +266,18 @@ class MsClient
                 $resp_object->result
             ));
         }
+
         return json_decode(json_encode($result), true);
     }
 
-    public function setToken($token): void
+    public
+    function setToken($token): void
     {
         $this->token = $token;
     }
 
-    public function getToken(): string|null
+    public
+    function getToken(): string|null
     {
         return $this->token;
     }
