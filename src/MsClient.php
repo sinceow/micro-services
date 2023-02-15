@@ -35,13 +35,13 @@ class MsClient
 
     public int $read_timeout = 0;
 
-    private $server_url = "https://msv8.jobsys.cn/public/index.php/";
+    private string $server_url = "https://msv8.jobsys.cn/public/index.php/";
 
     public bool $check_request = true;
 
     protected string $api_version = "2.0";
 
-    protected string $sdk_version = "ms-sdk-php-20220527";
+    protected string $sdk_version = "ms-sdk-php-20230215";
 
     private ?string $token = null;
 
@@ -250,15 +250,18 @@ class MsClient
         return json_decode(json_encode($result), true);
     }
 
-    public
-    function setToken($token): void
+    public function setToken($token): void
     {
         $this->token = $token;
     }
 
-    public
-    function getToken(): string|null
+    public function getToken(): string|null
     {
         return $this->token;
+    }
+
+    public function getServerUrl(): string
+    {
+        return $this->server_url;
     }
 }
