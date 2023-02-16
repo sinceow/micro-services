@@ -148,6 +148,6 @@ class CommonOrderCreateRequest implements MsRequest
 
     public function generatePaymentURL(MsClient $client, string $prepay_order_sn): string
     {
-        return $client->getServerUrl() . 'open/confirm-prepay?prepay_order_sn=' . $prepay_order_sn;
+        return $client->getServerUrl() . 'open/order/confirm-prepay?prepay_order_sn=' . $prepay_order_sn;
     }
 }
