@@ -24,10 +24,10 @@ class LivePlayInfoRequest implements MsRequest
     /**
      * @var string 流名称
      */
-    private string $stream_name = '';
+    private $stream_name = '';
 
 
-    private array $api_params = array();
+    private $api_params = array();
 
     /**
      * @return string
@@ -40,7 +40,7 @@ class LivePlayInfoRequest implements MsRequest
     /**
      * @param string $stream_name
      */
-    public function setStreamName(string $stream_name): void
+    public function setStreamName(string $stream_name)
     {
         $this->stream_name = $stream_name;
         $this->api_params['stream_name'] = $stream_name;

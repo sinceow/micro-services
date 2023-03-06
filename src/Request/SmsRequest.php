@@ -90,25 +90,25 @@ class SmsRequest implements MsRequest
     /**
      * @var array 接收短信的号码
      */
-    private array $phone_nums = [];
+    private $phone_nums = [];
 
     /**
      * @var string 短信类型
      */
-    private string $type = '';
+    private $type = '';
 
     /**
      * @var array 短信模板参数
      */
-    private array $params = [];
+    private $params = [];
 
     /**
      * @var bool 是否开启调试，调试情况下不会进行IP检测
      */
-    private bool $debug = false;
+    private $debug = false;
 
 
-    private array $api_params = [];
+    private $api_params = [];
 
 
     public function getPhoneNums(): array

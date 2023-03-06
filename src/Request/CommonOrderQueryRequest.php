@@ -10,9 +10,9 @@ class CommonOrderQueryRequest implements MsRequest
     /**
      * @var string 内部订单编号
      */
-    private string $sn = '';
+    private $sn = '';
 
-    private array $api_params = [];
+    private $api_params = [];
 
     public function setSn($sn)
     {

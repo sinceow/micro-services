@@ -25,34 +25,34 @@ class VideocallCreateRoomRequest implements MsRequest
      * @var string 主叫方称呼
      *
      */
-    private string $user_name = '';
+    private $user_name = '';
 
 
     /**
      * @var string 被叫方称呼
      *
      */
-    private string $remote_user_name = '';
+    private $remote_user_name = '';
 
     /**
      * @var string 由API调用方自定义的附加字段，
      *             会在回调中以及获取通话房间中原样返回
      *
      */
-    private string $extra = '';
+    private $extra = '';
 
     /**
      * @var bool 是否开启调试，调试情况下不会进行IP检测
      */
-    private bool $debug = false;
+    private $debug = false;
 
-    private array $api_params = [];
+    private $api_params = [];
 
 
     /**
      * @param string $user_name
      */
-    public function setUserName(string $user_name): void
+    public function setUserName(string $user_name)
     {
         $this->user_name = $user_name;
         $this->api_params['user_name'] = $user_name;
@@ -69,7 +69,7 @@ class VideocallCreateRoomRequest implements MsRequest
     /**
      * @param string $remote_user_name
      */
-    public function setRemoteUserName(string $remote_user_name): void
+    public function setRemoteUserName(string $remote_user_name)
     {
         $this->remote_user_name = $remote_user_name;
         $this->api_params['remote_user_name'] = $remote_user_name;

@@ -26,9 +26,9 @@ class VideocallRoomRequest implements MsRequest
      * @var string 根据房间号查询通话信息
      *              使用逗号分隔','
      */
-    private string $room_ids = '';
+    private $room_ids = '';
 
-    private array $api_params = array();
+    private $api_params = array();
 
 
     /**
@@ -42,7 +42,7 @@ class VideocallRoomRequest implements MsRequest
     /**
      * @param string $room_ids
      */
-    public function setRoomIds(string $room_ids): void
+    public function setRoomIds(string $room_ids)
     {
         $this->room_ids = $room_ids;
         $this->api_params['room_ids'] = $room_ids;

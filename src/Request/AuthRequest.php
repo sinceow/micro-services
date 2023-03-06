@@ -20,11 +20,11 @@ use Jobsys\MicroServices\RequestCheckUtil;
 class AuthRequest implements MsRequest
 {
 
-    private string $client_id = '';
+    private  $client_id = '';
 
-    private string $client_secret = '';
+    private  $client_secret = '';
 
-    private array $api_params = [];
+    private  $api_params = [];
 
     public function __construct($app_key = '', $app_secret = '')
     {

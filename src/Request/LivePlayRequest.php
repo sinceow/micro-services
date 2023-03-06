@@ -25,47 +25,47 @@ class LivePlayRequest implements MsRequest
     /**
      * @var string 流名称（确保唯一）
      */
-    private string $stream_name = '';
+    private $stream_name = '';
 
     /**
      * @var int 结束时间 (10位时间戳格式)
      */
-    private int $lh_ended_at = 0;
+    private $lh_ended_at = 0;
 
     /**
      * @var int 开始时间 (10位时间戳格式)
      */
-    private int $lh_started_at = 0;
+    private $lh_started_at = 0;
 
     /**
      * @var string 直播标题
      */
-    private string $lh_title = '';
+    private $lh_title = '';
 
     /**
      * @var string 主播名称
      */
-    private string $lh_author = '';
+    private $lh_author = '';
 
 
     /**
      * @var string 直播描述
      */
-    private string $lh_description = '';
+    private $lh_description = '';
 
 
     /**
      * @var string 附加信息
      */
-    private string $lh_extra = '';
+    private $lh_extra = '';
 
 
     /**
      * @var bool 是否开启调试，调试情况下不会进行IP检测
      */
-    private bool $debug = false;
+    private $debug = false;
 
-    private array $api_params = [];
+    private $api_params = [];
 
 
     /**
@@ -77,7 +77,7 @@ class LivePlayRequest implements MsRequest
     }
 
 
-    public function setStreamName($stream_name): void
+    public function setStreamName($stream_name)
     {
         $this->stream_name = $stream_name;
         $this->api_params['stream_name'] = $stream_name;
@@ -92,7 +92,7 @@ class LivePlayRequest implements MsRequest
     /**
      * @param int $lh_ended_at
      */
-    public function setLhEndedAt(int $lh_ended_at): void
+    public function setLhEndedAt(int $lh_ended_at)
     {
         $this->lh_ended_at = $lh_ended_at;
         $this->api_params['lh_ended_at'] = $lh_ended_at;
@@ -107,7 +107,7 @@ class LivePlayRequest implements MsRequest
     /**
      * @param int $lh_started_at
      */
-    public function setLhStartedAt(int $lh_started_at): void
+    public function setLhStartedAt(int $lh_started_at)
     {
         $this->lh_started_at = $lh_started_at;
         $this->api_params['lh_started_at'] = $lh_started_at;
@@ -126,7 +126,7 @@ class LivePlayRequest implements MsRequest
     /**
      * @param string $lh_title
      */
-    public function setLhTitle(string $lh_title): void
+    public function setLhTitle(string $lh_title)
     {
         $this->lh_title = $lh_title;
         $this->api_params['lh_title'] = $lh_title;
@@ -143,7 +143,7 @@ class LivePlayRequest implements MsRequest
     /**
      * @param string $lh_author
      */
-    public function setLhAuthor(string $lh_author): void
+    public function setLhAuthor(string $lh_author)
     {
         $this->lh_author = $lh_author;
         $this->api_params['lh_author'] = $lh_author;
@@ -162,7 +162,7 @@ class LivePlayRequest implements MsRequest
     /**
      * @param string $lh_description
      */
-    public function setLhDescription(string $lh_description): void
+    public function setLhDescription(string $lh_description)
     {
         $this->lh_description = $lh_description;
         $this->api_params['lh_description'] = $lh_description;
@@ -180,7 +180,7 @@ class LivePlayRequest implements MsRequest
     /**
      * @param string $lh_extra
      */
-    public function setLhExtra(string $lh_extra): void
+    public function setLhExtra(string $lh_extra)
     {
         $this->lh_extra = $lh_extra;
         $this->api_params['lh_extra'] = $lh_extra;

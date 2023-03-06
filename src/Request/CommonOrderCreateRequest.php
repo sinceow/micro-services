@@ -12,37 +12,37 @@ class CommonOrderCreateRequest implements MsRequest
     /**
      * @var string 内部订单编号
      */
-    private string $sn = '';
+    private $sn = '';
 
     /**
      * @var string 商品名称
      */
-    private string $name = '';
+    private $name = '';
 
     /**
      * @var int 商品数量
      */
-    private int $count = 1;
+    private $count = 1;
 
     /**
      * @var float 商品单价
      */
-    private float $price = 0.00;
+    private $price = 0.00;
 
 
     /**
      * @var float 商品总价
      */
-    private float $amount = 0.00;
+    private $amount = 0.00;
 
 
     /**
      * @var array 订单附加信息
      */
-    private array $extra = [];
+    private $extra = [];
 
 
-    private array $api_params = ['type' => 'common_order'];
+    private $api_params = ['type' => 'common_order'];
 
     public function setSn($sn)
     {

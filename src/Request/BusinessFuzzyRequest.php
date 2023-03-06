@@ -23,15 +23,15 @@ class BusinessFuzzyRequest implements  MsRequest{
     /**
      * @var string 查询公司关键词
      */
-    private string $keyword = '';
+    private $keyword = '';
 
 
     /**
      * @var bool 是否开启调试，调试情况下不会进行IP检测
      */
-    private bool $debug = false;
+    private $debug = false;
 
-    private array $api_params = [];
+    private $api_params = [];
 
 
     public function setKeyword($keyword){
