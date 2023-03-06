@@ -17,6 +17,6 @@ class ResultSet
     /**
      * @var mixed 返回信息
      **/
-    public mixed $result;
+    public $result;
 
 }

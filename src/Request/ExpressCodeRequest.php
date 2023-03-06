@@ -23,9 +23,9 @@ class ExpressCodeRequest implements  MsRequest{
     /**
      * @var string 快递服务商名称
      */
-    private string $ex_name = '';
+    private $ex_name = '';
 
-    private array $api_params = array();
+    private $api_params = array();
 
     public function setExName($ex_name){
         $this->ex_name = $ex_name;

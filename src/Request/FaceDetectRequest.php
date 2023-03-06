@@ -24,12 +24,12 @@ class FaceDetectRequest implements MsRequest
     /**
      * @var string 参照图片 （必填）
      */
-    private string $avatar_a = '';
+    private $avatar_a = '';
 
     /**
      * @var string 比对图片（必填）
      */
-    private string $avatar_b = '';
+    private  $avatar_b = '';
 
     /**
      * @var int 图片质量控制
@@ -42,20 +42,20 @@ class FaceDetectRequest implements MsRequest
      * 默认 0。
      * 若图片质量不满足要求，则返回结果中会提示图片质量检测不符要求。
      */
-    private int $quality = 0;
+    private $quality = 0;
 
     /**
      * @var boolean 是否开启图片旋转识别支持。开启后，整体耗时将可能增加数百毫秒。
      */
-    private bool $rotate = false;
+    private $rotate = false;
 
     /**
      * @var bool 是否开启调试，调试情况下不会进行IP检测
      */
-    private bool $debug = false;
+    private $debug = false;
 
 
-    private array $api_params = [];
+    private $api_params = [];
 
 
     public function getAvatarA(): string

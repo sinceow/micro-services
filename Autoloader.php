@@ -11,7 +11,8 @@ class Autoloader
     public static function autoload($class)
     {
         $name = $class;
-        if (str_contains($name, '\\')) {
+
+        if (strpos($name, '\\') >= 0) {
             $array = explode('\\', $class);
             $name = array_pop($array);
         }

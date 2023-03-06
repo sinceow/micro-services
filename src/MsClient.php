@@ -27,23 +27,23 @@ class MsClient
     const STATE_SUCCESS = 'SUCCESS';
     const STATE_FAIL = 'FAIL';
 
-    protected static ?self $client = null;
+    protected static $client = null;
 
-    public string $format = "json";
+    public $format = "json";
 
-    public int $connect_timeout = 300;
+    public $connect_timeout = 300;
 
-    public int $read_timeout = 0;
+    public $read_timeout = 0;
 
-    private string $server_url = "https://msv8.jobsys.cn/public/index.php/";
+    private $server_url = "https://msv8.jobsys.cn/public/index.php/";
 
-    public bool $check_request = true;
+    public $check_request = true;
 
-    protected string $api_version = "2.0";
+    protected $api_version = "2.0";
 
-    protected string $sdk_version = "ms-sdk-php-20230215";
+    protected $sdk_version = "ms-sdk-php-20230215";
 
-    private ?string $token = null;
+    private $token = null;
 
     public static function getInstance(string $app_id, string $app_secret): MsClient
     {
@@ -63,7 +63,7 @@ class MsClient
     }
 
 
-    public function curl($url, $post_fields = [], $res_type = 'json'): bool|string
+    public function curl($url, $post_fields = [], $res_type = 'json')
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -134,7 +134,7 @@ class MsClient
     }
 
 
-    protected function logCommunicationError($api_name, $request_url, $error_code, $response_txt): void
+    protected function logCommunicationError($api_name, $request_url, $error_code, $response_txt)
     {
         $local_ip = isset($_SERVER["SERVER_ADDR"]) ? $_SERVER["SERVER_ADDR"] : "CLI";
         $logger = new MsLogger();
@@ -250,12 +250,12 @@ class MsClient
         return json_decode(json_encode($result), true);
     }
 
-    public function setToken($token): void
+    public function setToken($token)
     {
         $this->token = $token;
     }
 
-    public function getToken(): string|null
+    public function getToken()
     {
         return $this->token;
     }

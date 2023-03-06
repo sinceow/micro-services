@@ -22,29 +22,29 @@ class VideocallCallingRoomRequest implements MsRequest
      * @var string 按extra信息进行查询
      *
      */
-    private string $extra = '';
+    private $extra = '';
 
     /**
      * @var string extra 信息的查询模式，可选 'like', 'equal'
      *             like: 模糊查询; equal: 精确查询
      *
      */
-    private string $rule = '';
+    private $rule = '';
 
 
     /**
      * @var string room_id 按通话房间号查询
      */
-    private string $room_id = '';
+    private $room_id = '';
 
 
     /**
      * @var bool 是否开启调试，调试情况下不会进行IP检测
      */
-    private bool $debug = false;
+    private $debug = false;
 
 
-    private array $api_params = [];
+    private $api_params = [];
 
     public function setRoomId($room_id)
     {

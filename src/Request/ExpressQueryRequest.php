@@ -23,19 +23,19 @@ class ExpressQueryRequest implements  MsRequest{
     /**
      * @var string 快递服务商代码
      */
-    private string $ex_code = '';
+    private $ex_code = '';
 
     /**
      * @var string 快递单号
      */
-    private string $ex_sn = '';
+    private $ex_sn = '';
 
     /**
      * @var bool 是否开启调试，调试情况下不会进行IP检测
      */
-    private bool $debug = false;
+    private $debug = false;
 
-    private array $api_params = array();
+    private $api_params = array();
 
 
     public function setExCode($ex_code){
