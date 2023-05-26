@@ -84,6 +84,24 @@ class SmsRequest implements MsRequest
      */
     const  SMS_TYPE_JOBSYS_ENTERPRISE_NOTIFICATION = 'JOBSYS_ENTERPRISE_NOTIFICATION'; //就业中心企业通知
 
+
+    /**
+     * ${name} 校友您好，您的校友学籍认证已通过，可前往小程序申领校友卡。
+     */
+    const SMS_TYPE_ALUMNI_STATUS_VERIFY_PASSED = 'ALUMNI_STATUS_VERIFY_PASSED'; //校友学籍认证审核通过
+
+
+    /**
+     * ${name} 校友您好，您的校友学籍认证未通过，请前往小程序查看相关原因，修正后重新提交审核。
+     */
+    const SMS_TYPE_ALUMNI_STATUS_VERIFY_DENIED = 'ALUMNI_STATUS_VERIFY_DENIED'; //校友学籍认证审核不通过
+
+
+    /**
+     * ${name} 校友您好，您的校友卡复审未通过，请前往小程序查看相关原因，修正后重新提交审核。
+     */
+    const SMS_TYPE_ALUMNI_CARD_VERIFY_DENIED = 'ALUMNI_CARD_VERIFY_DENIED'; //校友卡复审未通过
+
     /***********************************以上为短信类型设置*********************************************/
 
 
