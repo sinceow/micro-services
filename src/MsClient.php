@@ -41,7 +41,7 @@ class MsClient
 
     protected $api_version = "2.0";
 
-    protected $sdk_version = "ms-sdk-php-20230215";
+    protected $sdk_version = "ms-sdk-php-20230625";
 
     private $token = null;
 
