@@ -102,6 +102,30 @@ class SmsRequest implements MsRequest
      */
     const SMS_TYPE_ALUMNI_CARD_VERIFY_DENIED = 'ALUMNI_CARD_VERIFY_DENIED'; //校友卡复审未通过
 
+
+    /**
+     * ${name} 活动有新的预约消息，请及时查看并处理。
+     */
+    const SMS_TYPE_ACTIVITY_APPOINTMENT_MANAGER_NOTIFY = 'ACTIVITY_APPOINTMENT_MANAGER_NOTIFY'; //活动预约成功管理员通知
+
+
+    /**
+     * 您预约的活动${activity}已经通过审核，预约时间为：${datetime}，期待您的到来。
+     */
+    const SMS_TYPE_ACTIVITY_APPOINTMENT_VERIFY_PASSED = 'ACTIVITY_APPOINTMENT_VERIFY_PASSED'; //活动预约审核通过
+
+
+    /**
+     * 您预约的活动${activity}未通过审核，请登录个人中心查看详细信息。
+     */
+    const SMS_TYPE_ACTIVITY_APPOINTMENT_VERIFY_DENIED = 'ACTIVITY_APPOINTMENT_VERIFY_DENIED'; //活动预约审核不通过
+
+
+    /**
+     * 您的活动${activity}的预约时间为：${datetime}，请安排好时间参加，期待您的到来。
+     */
+    const SMS_TYPE_ACTIVITY_APPOINTMENT_REMINDER = 'ACTIVITY_APPOINTMENT_REMINDER'; //活动预约提醒
+
     /***********************************以上为短信类型设置*********************************************/
 
 
