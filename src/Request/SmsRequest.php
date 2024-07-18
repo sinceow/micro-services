@@ -104,6 +104,11 @@ class SmsRequest implements MsRequest
 
 
     /**
+     * 尊敬的${name}校友，生日的钟声已经敲响，母校的心意随之而来。愿这一岁，您能继续以智慧和勇气，探索未知，成就非凡。
+     */
+    const SMS_TYPE_ALUMNI_BIRTHDAY_BLESSING = 'ALUMNI_BIRTHDAY_BLESSING'; //校友卡生日祝福
+
+    /**
      * ${name} 活动有新的预约消息，请及时查看并处理。
      */
     const SMS_TYPE_ACTIVITY_APPOINTMENT_MANAGER_NOTIFY = 'ACTIVITY_APPOINTMENT_MANAGER_NOTIFY'; //活动预约成功管理员通知
