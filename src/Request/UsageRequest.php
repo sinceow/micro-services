@@ -27,7 +27,7 @@ class UsageRequest implements MsRequest
 
     public function getApiParams(): array
     {
-        return [];
+        return ['placeholder' => 1];
     }
 
     /**
