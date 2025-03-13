@@ -13,7 +13,14 @@
 *   Powered by http://www.padakeji.com
 =========================================================================*/
 
-class AiRecordRequest implements  MsRequest{
+
+namespace Jobsys\MicroServices\Request;
+
+use Exception;
+use Jobsys\MicroServices\RequestCheckUtil;
+
+class AiRecordRequest implements MsRequest
+{
 
     /**
      * @var string 问题
@@ -33,30 +40,36 @@ class AiRecordRequest implements  MsRequest{
     private $api_params = array();
 
 
-    public function setQuestion($question){
+    public function setQuestion($question)
+    {
         $this->question = $question;
         $this->api_params['question'] = $question;
     }
 
-    public function getQuestion(){
+    public function getQuestion()
+    {
         return $this->question;
     }
 
-    public function setToken($token){
+    public function setToken($token)
+    {
         $this->token = $token;
         $this->api_params['token'] = $token;
     }
 
-    public function getToken(){
+    public function getToken()
+    {
         return $this->token;
     }
 
-    public function setDebug($debug){
+    public function setDebug($debug)
+    {
         $this->debug = $debug;
         $this->api_params['debug'] = $debug;
     }
 
-    public function getDebug(){
+    public function getDebug()
+    {
         return $this->debug;
     }
 
@@ -78,5 +91,10 @@ class AiRecordRequest implements  MsRequest{
         if (RequestCheckUtil::checkEmpty($this->token)) {
             throw new Exception("client-check-error:Invalid Arguments:the value of token is empty", 41);
         }
+    }
+
+    public function getResponseType(): string
+    {
+        return "json";
     }
 }

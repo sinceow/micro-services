@@ -13,6 +13,8 @@
 *   Powered by http://www.padakeji.com
 =========================================================================*/
 
+namespace Jobsys\MicroServices\Request;
+
 class AiCheckRequest implements  MsRequest{
 
 
@@ -44,5 +46,10 @@ class AiCheckRequest implements  MsRequest{
 
     public function check()
     {
+    }
+
+    public function getResponseType(): string
+    {
+        return "json";
     }
 }
